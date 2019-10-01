@@ -73,9 +73,6 @@ COPY project/demoXnorTorizon.png /project/demoXnorTorizon.png
 # copy ui
 COPY project/window.ui /project/window.ui
 
-# copy ai2go bundle
-COPY bundles/libxnornet.so /project/libxnornet.so
-
 # entry point args
 ENV APP="/ai2go/gstreamer_live_overlay_object_detector"
 ENV APPARGS=""

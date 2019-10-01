@@ -1,4 +1,4 @@
-FROM arm64v8/debian:buster-slim AS build
+FROM arm32v7/debian:buster-slim AS build
 
 # install dev deps
 RUN apt-get -y update && apt-get install -y \
@@ -86,12 +86,7 @@ COPY project/demoXnorTorizon.png /demoXnorTorizon.png
 COPY project/window.ui /project/window.ui
 COPY project/window.ui /window.ui
 
-# copy ai2go bundle
-COPY bundles/libxnornet.so /project/libxnornet.so
-
 # entry point args
-#ENV APP="/ai2go/gstreamer_live_overlay_object_detector"
-#ENV APPARGS=""
 ENV APP="/project/setDefaultVideo.sh"
 ENV APPARGS=""
 
