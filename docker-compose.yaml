@@ -1,0 +1,19 @@
+version: '3'
+services:
+  weston:
+    image: torizonextras/arm64v8-weston-kiosk
+    volumes: 
+      - /dev:/dev
+      - /tmp:/tmp
+    privileged: true
+  ai2go:
+    depends_on: 
+      - weston
+    image: torizonextras/arm64v8-ai2go
+    command: /dev/video0
+    volumes:
+      - /dev:/dev
+      - /tmp:/tmp
+      - /home/torizon/:/xnor
+    privileged: true
+    restart: on-failure

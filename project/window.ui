@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
+<interface>
+  <requires lib="gtk+" version="3.8"/>
+  <object class="GtkWindow" id="window">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Xnor Demo</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="default_width">1920</property>
+    <property name="default_height">1080</property>
+    <property name="decorated">False</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkFixed">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkImage">
+            <property name="width_request">1920</property>
+            <property name="height_request">1080</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">demoXnorTorizon.png</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="videoarea">
+            <property name="width_request">840</property>
+            <property name="height_request">680</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="x">540</property>
+            <property name="y">276</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="countPerson">
+            <property name="width_request">321</property>
+            <property name="height_request">121</property>
+            <property name="can_focus">False</property>
+            <property name="no_show_all">True</property>
+            <property name="label" translatable="yes">0</property>
+            <attributes>
+              <attribute name="font-desc" value="Arial Bold 70"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">137</property>
+            <property name="y">534</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="labelSide">
+            <property name="width_request">321</property>
+            <property name="height_request">121</property>
+            <property name="can_focus">False</property>
+            <property name="no_show_all">True</property>
+            <property name="label" translatable="yes">Center</property>
+            <attributes>
+              <attribute name="font-desc" value="Arial Bold 70"/>
+              <attribute name="foreground" value="#ffffffffffff"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">138</property>
+            <property name="y">833</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

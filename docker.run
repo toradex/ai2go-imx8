@@ -1,0 +1,10 @@
+docker \
+run \
+--rm \
+--name ai2go \
+-it \
+--privileged \
+-v /tmp:/tmp \
+-v /dev:/dev \
+--entrypoint=bash \
+matheuscastello/ai2go:32
