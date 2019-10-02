@@ -53,10 +53,6 @@ build_window(xg_pipeline *pipeline)
 
 	pipeline->video_widget = GTK_WIDGET(gtk_builder_get_object(builder,
 					"videoarea"));
-	pipeline->label_persons = GTK_WIDGET(gtk_builder_get_object(builder,
-					"countPerson"));
-	pipeline->label_side = GTK_WIDGET(gtk_builder_get_object(builder,
-					"labelSide"));
 
 exit:
 	g_object_unref(builder);

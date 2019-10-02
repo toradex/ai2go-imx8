@@ -31,8 +31,6 @@ struct xg_pipeline
 	GstBus *bus;
 	GstElement *appsink;
 	GtkWidget *video_widget;
-	GtkWidget *label_persons;
-	GtkWidget *label_side;
 	GstVideoOverlay *overlay;
 	// Prevent querying appsink while stream stopping
 	pthread_mutex_t gst_pipeline_lock;
