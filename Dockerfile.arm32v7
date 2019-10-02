@@ -86,6 +86,15 @@ COPY project/demoXnorTorizon.png /demoXnorTorizon.png
 COPY project/window.ui /project/window.ui
 COPY project/window.ui /window.ui
 
+# wayland
+ENV UDEV 1
+# xorg
+ENV DISPLAY=:0
+
+# up udev
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]
+
 # entry point args
 ENV APP="/project/setDefaultVideo.sh"
 ENV APPARGS=""
