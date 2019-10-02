@@ -313,9 +313,6 @@ static GstElement *make_video_source(xg_pipeline *pipeline, const char *device)
 		gst_caps_from_string(
 			"video/x-raw,width=320,height=240"
 		);
-		/*gst_caps_from_string(
-			"video/x-raw,width=640,height=480"
-		);*/
 	g_object_set(capsfilter, "caps", caps_settings, NULL);
 
 	// mount video 4 linux and pipeline
@@ -325,8 +322,6 @@ static GstElement *make_video_source(xg_pipeline *pipeline, const char *device)
 	GstElement *scale =
 		make_element(pipeline, "videoscale", "source_videoscale");
 
-	//link_elements(pipeline, v4l2src, scale);
-	//link_elements(pipeline, scale, capsfilter);
 	link_elements(pipeline, v4l2src, capsfilter);
 	link_elements(pipeline, capsfilter, jpegdecoder);
 	link_elements(pipeline, jpegdecoder, videoflip);
@@ -393,7 +388,6 @@ static GstElement *make_auto_sink(xg_pipeline *pipeline)
 	queue = make_element(pipeline, "queue", "auto_sink_queue");
 	converter = make_element(pipeline, "videoconvert", "auto_sink_converter");
 	sink = make_element(pipeline, "waylandsink", "auto_sink");
-	//sink = make_element(pipeline, "fakesink", "auto_sink");
 
 	// set context
 	GdkDisplay *display = gtk_widget_get_display(pipeline->video_widget);

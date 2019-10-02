@@ -31,8 +31,6 @@ int main(int argc, char *argv[])
 	xnor_evaluation_result *result = NULL;
 	xnor_model_load_options* load_options
 		= xnor_model_load_options_create();
-	char toStr[10];
-	int important_detection = 0;
 
 	if (argc > 1)
 	{
@@ -114,11 +112,6 @@ int main(int argc, char *argv[])
 	// xg_pipeline_running() will return true until the window is closed
 	while (xg_pipeline_running(pipeline))
 	{
-		// for calc where we have more faces
-		int faces_on_left = 0;
-		int faces_on_right = 0;
-		int faces_on_center = 0;
-
 		// Retrieves the last video frame from the pipeline. These are not
 		// necessarily sequential, e.g. if inference is running slower than the
 		// video input device. The pipeline will handle dropping intermediate frames
@@ -164,7 +157,6 @@ int main(int argc, char *argv[])
 		}
 
 		// Get the box data and display the results
-		important_detection = 0;
 		xnor_evaluation_result_get_bounding_boxes(result, boxes,
 							  num_bounding_boxes);
 

@@ -37,9 +37,7 @@ all: build/object_detector \
 	build/segmentation_mask_of_image_file_to_file \
 	build/gstreamer_live_overlay_object_detector \
 	build/gstreamer_live_overlay_scene_classifier \
-	build/videotest \
-	build/intercomm \
-	build/gstreamer_toradex_faces_sides
+	build/videotest
 
 clean:
 	rm -rf build/
@@ -50,7 +48,6 @@ build/libxnornet.so : $(SDK_ROOT)/lib/$(ARCH)/libxnornet.so
 	cp -f $< $@
 
 # Common utilities
-build/common_util/tmp_intercomm.o : common_util/tmp_intercomm.h
 build/common_util/file.o : common_util/file.h
 build/common_util/colors.o : common_util/colors.h
 build/common_util/overlays.o : common_util/overlays.h common_util/colors.h
@@ -67,7 +64,6 @@ build/% : %.c build/common_util/file.o \
 	$(CC) $(CFLAGS) $(XGFLAGS) $^ $(XGLIBS) $(LINKFLAGS) -o $@
 
 build/gstreamer_% : gstreamer_%.c \
-	build/common_util/tmp_intercomm.o \
 	build/common_util/colors.o \
 	build/common_util/gstreamer_video_pipeline.o \
 	build/common_util/overlays.o | \
