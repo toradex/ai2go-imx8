@@ -84,15 +84,6 @@ int main(int argc, char *argv[])
 		goto fail;
 	}
 
-	// check for what we can do
-	/*const char **model_names_out;
-	int32_t model_names_out_size;
-	xnor_model_enumerate_built_in(model_names_out, model_names_out_size);*/
-
-	for (int i = 0; i < model_info.num_class_labels; i++) {
-		printf("Label %d: %s\n", i, model_info.class_labels[i]);
-	}
-
 	puts("Xnor Live Object Detection Demo");
 	printf("Model: %s\n", model_info.name);
 	printf("  version '%s'\n", model_info.version);
@@ -179,62 +170,18 @@ int main(int argc, char *argv[])
 
 		for (int32_t i = 0; i < num_bounding_boxes; ++i)
 		{
-			// we are full of persons
-			//printf("id %s\n", boxes[i].class_label.label);
-			/*if (strcmp(boxes[i].class_label.label, "apple") == 0
-			|| strcmp(boxes[i].class_label.label, "banana") == 0
-			|| strcmp(boxes[i].class_label.label, "carrot") == 0
-			|| strcmp(boxes[i].class_label.label, "orange") == 0
-			) {*/
-				xg_overlay *bbox = xg_overlay_create_bounding_box(
-					boxes[i].rectangle.x, 
-					boxes[i].rectangle.y, 
-					boxes[i].rectangle.width,
-					boxes[i].rectangle.height, 
-					boxes[i].class_label.label,
-					color_by_id(boxes[i].class_label.class_id)
-				);
-			
-				xg_pipeline_add_overlay(pipeline, bbox);
-				important_detection++;
-			/* }*/
-
-			// made the sides logic
-			float center_pointx = (boxes[i].rectangle.x
-				 + (boxes[i].rectangle.width / 2.0)) * 640.0;
-
-			if ( center_pointx <= 245.0 ) {
-				faces_on_right++;
-			} else if ( center_pointx <= 395.0 ) {
-				faces_on_center++;
-			} else {
-				faces_on_left++;
-			}
+			// set bbox
+			xg_overlay *bbox = xg_overlay_create_bounding_box(
+				boxes[i].rectangle.x, 
+				boxes[i].rectangle.y, 
+				boxes[i].rectangle.width,
+				boxes[i].rectangle.height, 
+				boxes[i].class_label.label,
+				color_by_id(boxes[i].class_label.class_id)
+			);
+			// add the bbox to be draw
+			xg_pipeline_add_overlay(pipeline, bbox);
 		}
-
-		// put how many persons we get from instant frame
-		/*if (pipeline->label_persons)
-		{
-			sprintf(toStr, "%d", important_detection);
-			gtk_label_set_text(GTK_LABEL(pipeline->label_persons),
-						toStr);
-		}*/
-
-		// where we are?
-		/*if (pipeline->label_side) {
-			if (faces_on_center > faces_on_right
-				&& faces_on_center > faces_on_left)
-				gtk_label_set_text(GTK_LABEL(pipeline->label_side),
-					"Center");
-			else if ( faces_on_left > faces_on_center
-				&& faces_on_left > faces_on_right )
-				gtk_label_set_text(GTK_LABEL(pipeline->label_side),
-					"Left");
-			else if ( faces_on_right > faces_on_center
-				&& faces_on_right > faces_on_left )
-				gtk_label_set_text(GTK_LABEL(pipeline->label_side),
-					"Right");
-		}*/
 
 		// Clean up after the frame-specific stuff
 		free(boxes);
